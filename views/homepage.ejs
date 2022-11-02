@@ -1,0 +1,113 @@
+<div class="homepage-bg">
+  <nav class="navbar fixed-top navbar-light bg-light p-sm-0">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-sm-4" href="#">Job Hunt</a>
+
+      <% if (isLoggedIn) { %>
+      <form action="/logout" method="post" class="d-flex">
+        <span class="btn btn-sm btn-primary btn-sm active pe-none me-sm-2">
+          logged in as <%= currentUser.email %>
+        </span>
+        <input type="hidden" name="_method" value="delete" />
+        <button class="btn btn-sm btn-secondary btn-sm me-sm-4">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </form>
+      <% } else { %>
+      <a href="/" class="btn btn-sm btn-primary d-flex me-sm-4"
+        ><span>Login</span></a
+      >
+      <% } %>
+    </div>
+  </nav>
+
+  <h2 class="lead py-lg-3 m-0">Welcome to your tracker!</h2>
+  <span>Total Applications: <%= jobs.length %> </span>
+
+  <form action="/new-application" class="new">
+    <button class="btn btn-success">
+      <i class="bi bi-plus-circle"></i> New Application
+    </button>
+  </form>
+  <div
+    class="table-responsive text-wrap overflow-auto"
+    style="max-width: 90%; margin: 0 auto"
+  >
+    <br />
+    <% jobs.forEach((jobs, index) => { %>
+    <table class="table table-bordered table-striped text-center mb-0">
+      <thead class="fw-bold table-primary">
+        <tr class="d-flex">
+          <th class="w-25">#</th>
+          <th class="w-75">Company</th>
+          <th class="w-100">Position</th>
+          <th class="w-50">Date Applied</th>
+          <th class="w-50">Tags</th>
+          <th class="w-50">Status</th>
+          <th class="w-25">Action</th>
+          <th class="w-25">Action</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        <tr class="table-white d-flex">
+          <td class="w-25"><%= index += 1 %></td>
+          <td class="w-75"><%= jobs.new_company_name %></td>
+          <td class="w-100"><%= jobs.new_position %></td>
+          <td class="w-50">
+            <%= moment(jobs.date_applied).format('DD MMM YYYY') %>
+          </td>
+          <td class="w-50"><%= jobs.new_tags %></td>
+          <td class="w-50"><%= jobs.new_status %></td>
+          <td class="w-25 table-hover action-mode">
+            <a href="/edit/<%= jobs.id %>" class="text-decoration-none"
+              >Modify</a
+            >
+          </td>
+          <td class="w-25 viewing">
+            <a href="/application/<%= jobs.id%>" class="text-decoration-none"
+              >View</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <tr class="d-flex">
+        <td class="table-warning">Notes</td>
+        <td class="table-default homepage-notes w-50"><%= jobs.notes %></td>
+      </tr>
+    </table>
+    <% }) %>
+    <!-- <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav> -->
+  </div>
+
+  <a href="/Profile" class="btn btn-dark mt-sm-3"
+    ><i class="bi bi-person"></i> Profile</a
+  >
+</div>
+<!-- <label for="status-dropdown">Status</label>
+<select name="dropdown" id="dropdown">
+  <option value="null">null</option>
+  <option value="applied">Applied</option>
+  <option value="follow-up">Follow Up</option>
+  <option value="interview">Interview</option>
+  <option value="offer">Offer</option>
+  <option value="withdrawn">Withdrawn</option>
+  <option value="reject">Reject</option>
+</select> -->

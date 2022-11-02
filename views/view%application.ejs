@@ -1,0 +1,66 @@
+<body class="view-background">
+  <nav class="navbar fixed-top navbar-light bg-light p-sm-0">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-sm-4" href="#">Job Hunt</a>
+
+      <% if (isLoggedIn) { %>
+      <form action="/logout" method="post" class="d-flex">
+        <span class="btn btn-sm btn-primary btn-sm active pe-none me-sm-2">
+          logged in as <%= currentUser.email %>
+        </span>
+        <input type="hidden" name="_method" value="delete" />
+        <button class="btn btn-sm btn-secondary btn-sm me-sm-4">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </form>
+      <% } else { %>
+      <a href="/" class="btn btn-sm btn-primary d-flex me-sm-4"
+        ><span>Login</span></a
+      >
+      <% } %>
+    </div>
+  </nav>
+
+  <h3>Viewing Application:</h3>
+
+  <div
+    class="table-responsive text-wrap overflow-auto"
+    style="max-width: 90%; margin: 0 auto"
+  >
+    <table class="table table-striped">
+      <tr class="">
+        <th class="">Company</th>
+        <th class="">Position</th>
+        <th class="">Date Applied</th>
+        <th class="">Tags</th>
+        <th class="">Status</th>
+        <th class="bar">Actions</th>
+      </tr>
+
+      <tr class="">
+        <td class=""><%= jobs.new_company_name %></td>
+        <td class=""><%= jobs.new_position %></td>
+        <td class=""><%= moment(jobs.date_applied).format('DD MMM YYYY') %></td>
+        <td class=""><%= jobs.new_tags %></td>
+        <td class=""><%= jobs.new_status %></td>
+        <td class="">
+          <a href="/edit/<%= jobs.id %>" class="btn btn-outline-danger"
+            >Modify</a
+          >
+        </td>
+        <br />
+      </tr>
+    </table>
+    <div class="adjust-view-notes" style="max-width: 70%; margin: 0 auto">
+      <table
+        class="table bg-warning bg-opacity-10 border border-warning border-start-0 rounded-end lh-base align-middle"
+        style="height: 250px"
+      >
+        <th class="table-warning bg-warning col-1">Notes</th>
+        <td class=""><%= jobs.notes %></td>
+      </table>
+    </div>
+  </div>
+
+  <a href="/homepage" class="btn btn-dark">Back to Homepage</a>
+</body>

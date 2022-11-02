@@ -1,0 +1,127 @@
+<div class="new-app-bg">
+  <nav class="navbar fixed-top navbar-light bg-light p-sm-0">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-sm-4" href="#">Job Hunt</a>
+
+      <% if (isLoggedIn) { %>
+      <form action="/logout" method="post" class="d-flex">
+        <span class="btn btn-sm btn-primary btn-sm active pe-none me-sm-2">
+          logged in as <%= currentUser.email %>
+        </span>
+        <input type="hidden" name="_method" value="delete" />
+        <button class="btn btn-sm btn-secondary btn-sm me-sm-4">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </form>
+      <% } else { %>
+      <a href="/" class="btn btn-sm btn-primary d-flex me-sm-4"
+        ><span>Login</span></a
+      >
+      <% } %>
+    </div>
+  </nav>
+
+  <h3>New Job Application</h3>
+
+  <div class="form-container d-flex justify-content-center">
+    <form
+      action="/new-upload"
+      method="post"
+      class="form-control py-sm-4 border-success"
+      style="max-width: 500px"
+    >
+      <label for="" class="form-label">Company</label>
+      <input
+        type="text"
+        name="company"
+        value=""
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="form-label">Position</label>
+      <input
+        type="text"
+        name="position"
+        value=""
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="form-label">Date Applied</label>
+      <input
+        type="text"
+        name="date_applied"
+        value=""
+        placeholder="e.g. dd mmm yyyy"
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="form-label">Notes</label>
+      <textarea
+        name="notes"
+        id=""
+        cols="20"
+        rows="3"
+        class="form-control w-75 mx-auto mb-sm-2"
+      ></textarea>
+
+      <label for="" class="form-label">Tags</label>
+      <div class="input-group w-25 mx-auto mb-sm-2">
+        <input
+          type="text"
+          name="tags"
+          class="form-control"
+          aria-label="Text input with segmented dropdown button"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        ></button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <% sortTag.forEach(tags => { %>
+            <a class="dropdown-item capitalize"><%= tags %></a>
+            <% }) %>
+          </li>
+        </ul>
+      </div>
+
+      <label for="" class="form-label">Status</label>
+      <div class="input-group w-25 mx-auto mb-sm-2">
+        <input
+          type="text"
+          name="status"
+          class="form-control"
+          aria-label="Text input with segmented dropdown button"
+          value=""
+          id="selectStatus"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          name="status"
+        ></button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <!-- <select name="selectStatus" onchange="statusClick()"> -->
+              <% sortStatus.forEach(status => { %>
+              <option class="dropdown-item capitalize" value="<%= status%>">
+                <%= status %> <% console.log('selectStatus') %>
+              </option>
+              <% }) %>
+            </select>
+          </li>
+        </ul>
+      </div>
+      <br />
+      <button class="btn btn-success">Add</button>
+    </form>
+  </div>
+  <br />
+  <form action="/homepage">
+    <button class="btn btn-dark">Back</button>
+  </form>
+</div>

@@ -1,0 +1,103 @@
+<div class="edit-app-bg">
+  <nav class="navbar fixed-top navbar-light bg-light p-sm-0">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-sm-4" href="#">Job Hunt</a>
+
+      <% if (isLoggedIn) { %>
+      <form action="/logout" method="post" class="d-flex">
+        <span class="btn btn-sm btn-primary btn-sm active pe-none me-sm-2">
+          logged in as <%= currentUser.email %>
+        </span>
+        <input type="hidden" name="_method" value="delete" />
+        <button class="btn btn-sm btn-secondary btn-sm me-sm-4">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </form>
+      <% } else { %>
+      <a href="/" class="btn btn-sm btn-primary d-flex me-sm-4"
+        ><span>Login</span></a
+      >
+      <% } %>
+    </div>
+  </nav>
+
+  <h3>Edit Application Details</h3>
+  <div class="form-container d-flex justify-content-center">
+    <form
+      action="/application/<%= jobs.id %>"
+      method="post"
+      class="form-control border-primary border-opacity-25"
+      style="max-width: 550px"
+    >
+      <input type="hidden" name="_method" value="put" />
+      <label for="" class="fw-bold pt-2">Company</label>
+      <input
+        type="text"
+        name="company"
+        value="<%= jobs.company %>"
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="fw-bold pt-2">Position</label>
+      <input
+        type="text"
+        name="position"
+        value="<%= jobs.position %>"
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="fw-bold pt-2">Date Applied</label>
+      <input
+        type="text"
+        name="date_applied"
+        value="<%= moment(jobs.date_applied).format('DD MMM YYYY') %>"
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="fw-bold pt-2">Notes</label>
+      <textarea
+        name="notes"
+        id=""
+        cols="20"
+        rows="4"
+        placeholder="<%= jobs.notes %>"
+        class="form-control w-75 mx-auto mb-sm-2"
+      ></textarea>
+
+      <label for="" class="fw-bold pt-2">Tags</label>
+      <input
+        type="text"
+        name="tags"
+        value="<%= jobs.tags %>"
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+
+      <label for="" class="fw-bold pt-2">Status</label>
+      <input
+        type="text"
+        name="status"
+        value="<%= jobs.status %>"
+        class="form-control w-50 mx-auto mb-sm-2"
+      />
+      <br />
+      <div
+        class="d-flex align-items-center flex-column mb-3 gap-3 align-middle"
+      >
+        <button class="btn btn-outline-success">Update</button>
+        <!-- <br /> -->
+        <form action="/remove-notes/<%= jobs.id %>" method="post">
+          <input type="hidden" name="_method" value="put" />
+          <button class="btn btn-outline-warning">Remove Notes</button>
+        </form>
+        <!-- <br /> -->
+        <form action="/delete/<%= jobs.id %>" method="post">
+          <button class="btn btn-outline-danger">Delete Application</button>
+        </form>
+      </div>
+    </form>
+  </div>
+  <br />
+  <form action="/homepage">
+    <button class="btn btn-dark">Back</button>
+  </form>
+</div>

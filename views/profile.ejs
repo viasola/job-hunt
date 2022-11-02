@@ -1,0 +1,38 @@
+<% if (isLoggedIn) { %>
+    <p class="static-login-btn">logged in as <%= currentUser.email %></p>
+    <form action="/logout" method="post" class="static-login-btn">
+        <input type="hidden" name="_method" value="delete">
+        <button>Logout</button>
+    </form>       
+<% } else { %>
+    <a href="/" class="static-login-btn"><p>Login</p></a>
+<% } %>
+
+<p>Profile</p>
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Contact Info</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td></td>
+    </tr>
+
+
+
+    
+</table>
