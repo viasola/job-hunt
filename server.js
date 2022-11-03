@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const session = require("express-session");
 const _ = require("underscore");
 const moment = require("moment");
-const { text } = require("express");
 const functions = require("./middlewares/functions");
 const port = process.env.PORT || 8080;
 // const db = require("./models/index.model");
@@ -250,4 +249,4 @@ app.get("/profile", (req, res) => {
 
 app.get("/tags", (req, res, next) => {});
 
-app.listen(process.env.PORT || 8080);
+app.listen(port);
