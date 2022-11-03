@@ -1,38 +1,46 @@
-<% if (isLoggedIn) { %>
-    <p class="static-login-btn">logged in as <%= currentUser.email %></p>
-    <form action="/logout" method="post" class="static-login-btn">
-        <input type="hidden" name="_method" value="delete">
-        <button>Logout</button>
-    </form>       
-<% } else { %>
-    <a href="/" class="static-login-btn"><p>Login</p></a>
-<% } %>
+<nav class="navbar fixed-top navbar-light bg-light p-sm-0">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-sm-4" href="#">Job Hunt</a>
 
-<p>Profile</p>
+    <% if (isLoggedIn) { %>
+    <form action="/logout" method="post" class="d-flex">
+      <span class="btn btn-sm btn-primary btn-sm active pe-none me-sm-2">
+        logged in as <%= currentUser.email %>
+      </span>
+      <input type="hidden" name="_method" value="delete" />
+      <button class="btn btn-sm btn-secondary btn-sm me-sm-4">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
+    </form>
+    <% } else { %>
+    <a href="/" class="btn btn-sm btn-primary d-flex me-sm-4"
+      ><span>Login</span></a
+    >
+    <% } %>
+  </div>
+</nav>
 
-<table>
-    <tr>
-        <td>Name</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Contact Info</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td></td>
-    </tr>
+<h3>Profile</h3>
 
-
-
-    
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Contact Info</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td></td>
+  </tr>
 </table>

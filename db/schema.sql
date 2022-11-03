@@ -29,15 +29,6 @@ CREATE TABLE profile (
     social_media_url VARCHAR 
 );
 
--- CREATE TABLE jobs (
---     id SERIAL PRIMARY KEY, 
---     company TEXT,
---     position TEXT,
---     notes VARCHAR,
---     tags TEXT,
---     status TEXT
--- );
-
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email TEXT, 

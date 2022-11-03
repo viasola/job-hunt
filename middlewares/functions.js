@@ -1,12 +1,6 @@
-function selectTag(req, res) {
-  let { tags, status } = req.body;
-}
-
-// const selectStatus = document.querySelector("#selectStatus");
-
-function statusClick(e) {
-  selectStatus.innerHTML = e.target.value;
-}
-console.log("test");
-
-module.exports = statusClick;
+module.exports = function statusClick(req, res) {
+  let state = req.app.statusBtn;
+  res.send(
+    (document.getElementById("selectStatus").innerHTML = e.target.value)
+  );
+};
