@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { Pool } = require("pg");
 const expressLayouts = require("express-ejs-layouts");
+const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
   res.locals.moment = moment;
   next();
 });
+app.use(bodyParser.urlencoded());
 app.use(
   methodOverride(function (req, res) {
     if (req.body && typeof req.body === "object" && "_method" in req.body) {
@@ -98,7 +100,7 @@ app.delete("/logout", (req, res) => {
 
 app.get("/homepage", (req, res, next) => {
   db.query(
-    "SELECT *, INITCAP(company) AS new_company_name, INITCAP(position) AS new_position, INITCAP(tags) AS new_tags, INITCAP (status) AS new_status FROM jobs;",
+    "SELECT *, INITCAP(company) AS new_company_name, INITCAP(position) AS new_position, INITCAP(tags) AS new_tags, INITCAP (status) AS new_status FROM jobs ORDER BY id ASC;",
     (err, dbRes) => {
       if (err) {
         next(err);
@@ -226,14 +228,14 @@ app.put("/application/:id", (req, res, next) => {
 });
 
 app.post("/delete/:id", (req, res) => {
-  const sql = `DELETE FROM jobs WHERE id = $1`;
+  const sql = `DELETE FROM jobs WHERE id = $1;`;
   db.query(sql, [req.params.id], (err, dbRes) => {
     res.redirect("/homepage");
   });
 });
 
 app.put("/remove-notes/:id", (req, res) => {
-  const sql = `UPDATE jobs SET notes = NULL WHERE id = $1`;
+  const sql = `UPDATE jobs SET notes = NULL WHERE id = $1;`;
   db.query(sql, [req.params.id], (err, dbRes) => {
     res.redirect(`/application/${req.params.id}`);
   });

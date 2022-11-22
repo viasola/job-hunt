@@ -22,13 +22,11 @@
   </nav>
 
   <h3>Edit Application Details</h3>
-  <div class="form-container d-flex justify-content-center">
-    <form
-      action="/application/<%= jobs.id %>"
-      method="post"
-      class="form-control border-primary border-opacity-25"
-      style="max-width: 550px"
-    >
+  <div
+    class="form-container d-inline-flex flex-column justify-content-center form-control border-primary border-opacity-25"
+    style="max-width: 550px"
+  >
+    <form action="/application/<%= jobs.id %>" method="post" class="">
       <input type="hidden" name="_method" value="put" />
       <label for="" class="fw-bold pt-2">Company</label>
       <input
@@ -84,20 +82,20 @@
         class="d-flex align-items-center flex-column mb-3 gap-3 align-middle"
       >
         <button class="btn btn-outline-success">Update</button>
-        <!-- <br /> -->
-        <form action="/remove-notes/<%= jobs.id %>" method="post">
-          <input type="hidden" name="_method" value="put" />
-          <button class="btn btn-outline-warning">Remove Notes</button>
-        </form>
-        <!-- <br /> -->
-        <form action="/delete/<%= jobs.id %>" method="post">
-          <button class="btn btn-outline-danger">Delete Application</button>
-        </form>
       </div>
+    </form>
+    <!-- <br /> -->
+    <form action="/remove-notes/<%= jobs.id %>" method="post">
+      <input type="hidden" name="_method" value="put" />
+      <button class="btn btn-outline-warning mb-3">Remove Notes</button>
+    </form>
+    <!-- <br /> -->
+    <form action="/delete/<%= jobs.id %>" method="post">
+      <button class="btn btn-outline-danger mb-3">Delete Application</button>
     </form>
   </div>
   <br />
   <form action="/homepage">
-    <button class="btn btn-dark">Back</button>
+    <button class="btn btn-dark mt-3">Back</button>
   </form>
 </div>
