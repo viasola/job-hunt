@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "logcalhost",
+  HOST: "localhost",
   USER: "postgres",
   PASSWORD: "findjob",
   DB: "findajob",
